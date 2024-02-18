@@ -9,8 +9,7 @@
     <table>
       <tbody>
         <tr v-for="(week, index) in calendar" :key="index">
-                  
-          <td v-for="day in week" :key="day.date">
+          <td v-for="day in week" :key="day.date" @click="openChecklist">
             {{ day.date }}
           </td>
         </tr>
@@ -20,11 +19,8 @@
 </template>
 
 <script>
-// import IndividualDay from './IndividualDay.vue'; 
+
 export default {
-  // components: {
-  //   IndividualDay
-  // },
   data() {
     return {
       currentMonth: new Date(),
@@ -40,8 +36,8 @@ export default {
       const year = this.currentMonth.getFullYear();
       const month = this.currentMonth.getMonth();
       const firstDayOfMonth = new Date(year, month, 1);
-      const firstDayOfWeek = firstDayOfMonth.getDay(); // 0: Sunday, 1: Monday, ..., 6: Saturday
-      const offset = (firstDayOfWeek === 0) ? 6 : firstDayOfWeek - 1; // Ensure Sunday is at index 0
+      const firstDayOfWeek = firstDayOfMonth.getDay(); 
+      const offset = (firstDayOfWeek === 0) ? 6 : firstDayOfWeek - 1; 
       const daysInMonth = new Date(year, month + 1, 0).getDate();
       const calendar = [];
 
@@ -75,6 +71,9 @@ export default {
       const nextMonth = new Date(this.currentMonth);
       nextMonth.setMonth(nextMonth.getMonth() + 1);
       this.currentMonth = nextMonth;
+    },
+    openChecklist() {
+      this.$router.push('/checklist');
     }
   }
 };

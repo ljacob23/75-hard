@@ -1,9 +1,16 @@
 <!-- Day.vue -->
 <template>
-<div class="IndividualDay">{{ IndividualDay }}</div>
+  <!-- <tr v-for="(week, index) in calendar" :key="index"> -->
+    <td v-for="day in week" :key="day.date">
+      {{ day.date }}
+    </td>
+  <!-- </tr> -->
 </template>
 
 <script>
+defineProps({
+
+})
 export default {
   props: ['IndividualDay']
 };
